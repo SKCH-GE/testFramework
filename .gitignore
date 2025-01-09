@@ -4,3 +4,7 @@
 /features/posture_sensor.feature
 /features/size_sensor.feature
 /features/steps/__init__.py
+/tests/test_occupant_detection.py
+/tests/test_posture_sensor.py
+/tests/test_size_sensor.py
+/tests/__init__.py
