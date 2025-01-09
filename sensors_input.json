@@ -1,0 +1,43 @@
+{
+
+  "sensors": [
+
+    {
+
+      "name": "occupant_detection",
+
+      "values": ["1", "0"],
+
+      "conditions": ["presence"],
+
+      "expected_results": ["detected", "not_detected"]
+
+    },
+
+    {
+
+      "name": "posture_sensor",
+
+      "values": ["upright", "slouched"],
+
+      "conditions": ["posture"],
+
+      "expected_results": ["valid", "valid"]
+
+    },
+
+    {
+
+      "name": "size_sensor",
+
+      "values": ["50", "9999"],
+
+      "conditions": ["cm"],
+
+      "expected_results": ["valid", "faulty"]
+
+    }
+
+  ]
+
+}

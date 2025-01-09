@@ -1,0 +1,6 @@
+/test_results_*.txt
+/features/environment.py
+/features/occupant_detection.feature
+/features/posture_sensor.feature
+/features/size_sensor.feature
+/features/steps/__init__.py

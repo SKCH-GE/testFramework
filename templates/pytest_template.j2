@@ -1,0 +1,19 @@
+import pytest
+from aio_interface import AIOSensorInterface
+
+@pytest.fixture
+def aio_interface():
+    return AIOSensorInterface()
+
+@pytest.mark.parametrize("value,condition,expected_result", [
+    {% for value, condition, result in test_cases %}
+    ("{{ value }}", "{{ condition }}", "{{ result }}"),
+    {% endfor %}
+])
+def test_{{ sensor_name }}(aio_interface, value, condition, expected_result):
+    result = aio_interface.process_sensor_input(
+        sensor_id="{{ sensor_name }}",
+        value=value,
+        unit=condition
+    )
+    assert result["status"] == expected_result
