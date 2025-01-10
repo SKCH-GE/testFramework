@@ -34,7 +34,7 @@ class AIOSensorInterface:
     def _validate_size(self, value, unit):
         try:
             value = float(value)
-            if unit == "cm" and 0 <= value <= 300:  # Reasonable range for human size
+            if unit == "cm" and 0 <= value <= 200:  # Reasonable range for human size
                 return {"status": "valid"}
             return {"status": "faulty"}
         except ValueError:
