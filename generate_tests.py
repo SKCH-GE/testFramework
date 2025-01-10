@@ -66,6 +66,8 @@ for sensor in sensors:
     with open(f"tests/test_{sensor_name}.py", "w") as f:
         f.write(pytest_content)
 
+
+# Then we generate a Project_structure report
 print("Test files generated successfully!")
 print("\nDirectory structure created:")
 print("aio_bdd_framework/")
