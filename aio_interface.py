@@ -1,41 +1,14 @@
+import json
 class AIOSensorInterface:
-    def __init__(self):
-        self.sensor_states = {}
+    def __init__(self, config_path="sensors_input.json"):
+        with open(config_path, "r") as f:
+            self.sensor_config = {sensor['name']: sensor for sensor in json.load(f)["sensors"]}
 
     def process_sensor_input(self, sensor_id, value, unit):
-        """
-        Process sensor input and return status based on validation rules
-        """
-        if sensor_id == "occupant_detection":
-            return self._validate_occupant_detection(value)
-        elif sensor_id == "posture_sensor":
-            return self._validate_posture(value)
-        elif sensor_id == "size_sensor":
-            return self._validate_size(value, unit)
-        else:
+        if sensor_id not in self.sensor_config:
             return {"status": "invalid_sensor"}
 
-    def _validate_occupant_detection(self, value):
-        try:
-            value = int(value)
-            if value == 1:
-                return {"status": "detected"}
-            elif value == 0:
-                return {"status": "not_detected"}
-            return {"status": "invalid_value"}
-        except ValueError:
-            return {"status": "invalid_value"}
-
-    def _validate_posture(self, value):
-        if value in ["upright", "slouched"]:
-            return {"status": "valid"}
+        sensor = self.sensor_config[sensor_id]
+        if str(value) in sensor["values"] and unit in sensor["conditions"]:
+            return {"status": sensor["expected_results"][sensor["values"].index(str(value))]}
         return {"status": "invalid_value"}
-
-    def _validate_size(self, value, unit):
-        try:
-            value = float(value)
-            if unit == "cm" and 0 <= value <= 200:  # Reasonable range for human size
-                return {"status": "valid"}
-            return {"status": "faulty"}
-        except ValueError:
-            return {"status": "faulty"}
