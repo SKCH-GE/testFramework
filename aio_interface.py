@@ -1,5 +1,6 @@
 import json
 class AIOSensorInterface:
+
     def __init__(self, config_path="sensors_input.json"):
         with open(config_path, "r") as f:
             self.sensor_config = {sensor['name']: sensor for sensor in json.load(f)["sensors"]}
