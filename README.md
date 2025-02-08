@@ -61,22 +61,6 @@ def test_{{ sensor.name }}_integration():
 pytest test_sensors.py
 ```
 
-## Project Structure
-
-```
-automated-test-framework/
-├── templates/
-│   ├── sensor_tests.py.j2
-│   └── workflow_tests.py.j2
-├── tests/
-│   ├── features/
-│   │   └── sensor_integration.feature
-│   └── generated/
-├── src/
-│   └── test_generator.py
-└── README.md
-```
-
 ## Use Cases
 
 - Integration testing of new sensors
